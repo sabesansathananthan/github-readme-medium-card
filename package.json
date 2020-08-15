@@ -1,0 +1,21 @@
+{
+  "name": "github-readme-medium-card",
+  "version": "1.0.0",
+  "description": "medium-post-cards-for-github-readme-files",
+  "main": "app.js",
+  "scripts": {
+    "start": "node ./app.js",
+    "dev": "nodemon ./app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sabesansathananthan/github-readme-medium-card.git"
+  },
+  "author": "sabesansathananthan",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "express": "^4.17.1"
+  }
+}

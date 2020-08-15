@@ -30,7 +30,9 @@ You can customize the appearance of your `medium cards` for your use case, follo
 
 ### Deploy your own
 
-Deploy this code to your vercel account.
-[![Vercel Deploy](https://vercel.com/button)](https://vercel.com/import/git?s=https://github.com/sabesansathananthan/github-readme-medium-card)
+Deploy this code to your vercel account.[![Vercel Deploy](https://vercel.com/button)](https://vercel.com/import/git?s=https://github.com/sabesansathananthan/github-readme-medium-card)
 
 ### License
+
+MIT License
+Copyright (c) 2020 [Sathananthan Sabesan](https://github.com/sabesansathananthan)

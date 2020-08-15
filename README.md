@@ -34,7 +34,7 @@ Deploy this code to your vercel account.[![Vercel Deploy](https://vercel.com/but
 
 ### Contribute
 
-Contribute to this repository by opening a Pull Request to this repository. Refer to the [CONTRIBUTING](./CONTRIBUTING) file for direction.
+Contribute to this repository by opening a Pull Request to this repository. Refer to the [CONTRIBUTING](./CONTRIBUTING.md) file for direction.
 
 ### License
 

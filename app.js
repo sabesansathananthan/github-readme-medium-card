@@ -9,23 +9,19 @@ const blogCard = require("./blogCard");
 const getUserData = async (username) => {
   try {
     const result = await axios.get(mediumURL + username);
-    const filteredResult = result.data.items.filter(function (item) {
-      if (
-        !item.thumbnail.includes("stat?event") ||
-        !item.thumbnail.includes("&referrerSource")
-      ) {
-        return true;
-      } else {
-        return false;
-      }
-    });
+    const filteredResult = result.data.items.filter(
+      (item) =>
+        (!item.thumbnail.includes("stat?event") ||
+          !item.thumbnail.includes("&referrerSource")) &&
+        item.categories.length > 0
+    );
     return filteredResult;
   } catch (error) {
     console.error(error);
     return error;
   }
 };
-
+console.log(getUserData("sabesan96"));
 const asyncForEach = async (array, callback) => {
   for (let index = 0; index < array.length; index++) {
     await callback(array[index], index, array);

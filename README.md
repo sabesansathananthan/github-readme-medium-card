@@ -6,7 +6,7 @@ Fetch your medium blog posts and display it as cards in your GitHub ReadMe.
 [![Sabesan96](https://github-readme-medium-card.vercel.app/getMediumBlogs?username=sabesan96&type=horizontal)](https://medium.com/@sabesan96)
 ```
 
-[![Sabesan96](https://github-readme-medium-card.vercel.app/getMediumBlogs?username=sabesan96&type=horizontal)](https://medium.com/@sabesan96)
+[![Sabesan96](https://github-readme-medium-card.vercel.app/getMediumBlogs?username=sabesan96&type=horizontal&limit=3)](https://medium.com/@sabesan96)
 
 ### How to use
 
@@ -34,5 +34,5 @@ Deploy this code to your vercel account.[![Vercel Deploy](https://vercel.com/but
 
 ### License
 
-MIT License
+[MIT License](./LICENSE)
 Copyright (c) 2020 [Sathananthan Sabesan](https://github.com/sabesansathananthan)

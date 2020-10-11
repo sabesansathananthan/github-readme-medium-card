@@ -1,5 +1,5 @@
-var express = require("express");
-var app = express();
+let express = require("express");
+let app = express();
 app.use(express.json());
 const axios = require("axios");
 const mediumURL =
@@ -21,7 +21,8 @@ const getUserData = async (username) => {
     return error;
   }
 };
-console.log(getUserData("sabesan96"));
+let ww = getUserData("sabesan96");
+console.log(`${ww}`);
 const asyncForEach = async (array, callback) => {
   for (let index = 0; index < array.length; index++) {
     await callback(array[index], index, array);

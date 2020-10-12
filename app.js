@@ -22,9 +22,9 @@ const getUserData = async (username) => {
   }
 };
 console.log(getUserData("sabesan96"));
-const asyncForEach = async (array, callback) => {
+const asyncForEach = async (array, settings, callback) => {
   for (let index = 0; index < array.length; index++) {
-    await callback(array[index], index, array);
+    await callback(array[index], index, settings, array);
   }
 };
 
@@ -50,33 +50,20 @@ app.get("/getMediumBlogs", async (request, response) => {
     }
     const resultData = await getUserData(username);
     let result = `<svg>`;
-    if (type == "horizontal") {
-      result = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${
-        resultData.length * 355
-      }" version="1.2" height="105">`;
-      await asyncForEach(resultData, async (blog, index) => {
-        if (index >= limit) {
-          return;
-        }
-        const blogCardObj = await blogCard(blog);
-        result += `<g transform="translate(${
-          index * 355
-        }, 0)">${blogCardObj}</g>`;
-      });
-    } else {
-      result = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="350" version="1.2" height="${
-        resultData.length * 110
-      }">`;
-      await asyncForEach(resultData, async (blog, index) => {
-        if (index >= limit) {
-          return;
-        }
-        const blogCardObj = await blogCard(blog);
-        result += `<g transform="translate(0, ${
-          index * 110
-        })">${blogCardObj}</g>`;
-      });
-    }
+
+    result = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${
+      (resultData.length <= 1) ? resultData.length*355 : 710 
+    }" version="1.2" height="${ (resultData.length/2)*110 }">`;
+    await asyncForEach(resultData, request.query, async (blog, index, settings) => {
+      if (index >= limit) {
+        return;
+      }
+      const blogCardObj = await blogCard(blog, settings);
+      result += `<g transform="translate(${
+        (index%2) ?  355 : 0  
+      }, ${ Math.floor(index/2)*110 })">${blogCardObj}</g>`;
+    });
+  
     result += `</svg>`;
     response.writeHead(200, { "Content-Type": "image/svg+xml" });
     response.write(result);
@@ -90,5 +77,5 @@ app.get("/getMediumBlogs", async (request, response) => {
 var port = process.env.PORT || 3000;
 
 app.listen(port, function () {
-  console.log("Server listening" + port);
+  console.log("Server listening " + port);
 });

@@ -1,7 +1,9 @@
-var express = require("express");
-var app = express();
+const express = require("express");
+const app = express();
+
 app.use(express.json());
 const axios = require("axios");
+
 const mediumURL =
   "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@";
 const blogCard = require("./blogCard");
@@ -23,10 +25,10 @@ const getUserData = async (username) => {
 };
 console.log(getUserData("sabesan96"));
 const asyncForEach = async (array, callback) => {
-  for (let index = 0; index < array.length; index++) {
-    await callback(array[index], index, array);
-  }
-};
+  array.forEach((item, index) => {
+    await callback(item, index, array);
+  })
+}
 
 app.get("/getMediumBlogs", async (request, response) => {
   try {

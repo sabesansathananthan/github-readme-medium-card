@@ -39,39 +39,42 @@ app.get("/getMediumBlogs", async (request, response) => {
       response.end();
       return;
     }
+
     const username = request.query.username;
     let limit = 5;
     let type = "vertical";
+    let theme = 'dark';
+
     if (request.query.type) {
       type = request.query.type;
     }
+
     if (request.query.limit) {
       limit = request.query.limit;
     }
+
+    if (request.query.theme) {
+      theme = request.query.theme;
+    }
+
     const resultData = await getUserData(username);
     let result = `<svg>`;
+
     if (type == "horizontal") {
-      result = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${
-        resultData.length * 355
-      }" version="1.2" height="105">`;
+      result = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${ resultData.length * 355 }" version="1.2" height="105">`;
       await asyncForEach(resultData, async (blog, index) => {
-        if (index >= limit) {
-          return;
-        }
-        const blogCardObj = await blogCard(blog);
-        result += `<g transform="translate(${
-          index * 355
-        }, 0)">${blogCardObj}</g>`;
+        if (index >= limit) return;
+
+        const blogCardObj = await blogCard(blog, theme);
+
+        result += `<g transform="translate(${ index * 355 }, 0)">${ blogCardObj }</g>`;
       });
     } else {
-      result = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="350" version="1.2" height="${
-        resultData.length * 110
-      }">`;
+      result = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="350" version="1.2" height="${ resultData.length * 110 }">`;
       await asyncForEach(resultData, async (blog, index) => {
-        if (index >= limit) {
-          return;
-        }
-        const blogCardObj = await blogCard(blog);
+        if (index >= limit) return;
+
+        const blogCardObj = await blogCard(blog, theme);
         result += `<g transform="translate(0, ${
           index * 110
         })">${blogCardObj}</g>`;

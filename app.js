@@ -21,12 +21,6 @@ const getUserData = async (username) => {
     return error;
   }
 };
-console.log(getUserData("sabesan96"));
-const asyncForEach = async (array, callback) => {
-  for (let index = 0; index < array.length; index++) {
-    await callback(array[index], index, array);
-  }
-};
 
 app.get("/getMediumBlogs", async (request, response) => {
   try {
@@ -54,28 +48,35 @@ app.get("/getMediumBlogs", async (request, response) => {
       result = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${
         resultData.length * 355
       }" version="1.2" height="105">`;
-      await asyncForEach(resultData, async (blog, index) => {
-        if (index >= limit) {
-          return;
-        }
-        const blogCardObj = await blogCard(blog);
-        result += `<g transform="translate(${
-          index * 355
-        }, 0)">${blogCardObj}</g>`;
-      });
+      const card = await Promise.all(
+        resultData.map(async (blog, index) => {
+          if (index >= limit) {
+            return;
+          }
+          const blogCardObj = await blogCard(blog);
+          return `<g transform="translate(${
+            index * 355
+          }, 0)">${blogCardObj}</g>`;
+        })
+      );
+      result += card.join('');
     } else {
       result = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="350" version="1.2" height="${
         resultData.length * 110
       }">`;
-      await asyncForEach(resultData, async (blog, index) => {
-        if (index >= limit) {
-          return;
-        }
-        const blogCardObj = await blogCard(blog);
-        result += `<g transform="translate(0, ${
-          index * 110
-        })">${blogCardObj}</g>`;
-      });
+      const card = await Promise.all(
+        resultData.map(async (blog, index) => {
+          console.log("index", index)
+          if (index >= limit) {
+            return '';
+          }
+          const blogCardObj = await await blogCard(blog);
+          return `<g transform="translate(0, ${
+            index * 110
+          })">${blogCardObj}</g>`;
+        })
+      );
+      result += card.join('');
     }
     result += `</svg>`;
     response.writeHead(200, { "Content-Type": "image/svg+xml" });

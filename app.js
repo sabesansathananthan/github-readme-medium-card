@@ -40,7 +40,7 @@ app.get("/getMediumBlogs", async (request, response) => {
       return;
     }
     const username = request.query.username;
-    let limit = 3;
+    let limit = 5;
     let type = "vertical";
     if (request.query.type) {
       type = request.query.type;

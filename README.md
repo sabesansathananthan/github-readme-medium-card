@@ -3,10 +3,10 @@
 Fetch your medium blog posts and display it as cards in your GitHub ReadMe.
 
 ```
-[![Sabesan96](https://github-readme-medium-card.vercel.app/getMediumBlogs?username=sabesan96&type=horizontal)](https://medium.com/@sabesan96)
+[![@zomatoorder1822](https://github-readme-medium-card.vercel.app/getMediumBlogs?username=sabesan96&type=horizontal)](https://medium.com/@zomatoorder1822)
 ```
 
-[![Sabesan96](https://github-readme-medium-card.vercel.app/getMediumBlogs?username=sabesan96&type=horizontal)](https://medium.com/@sabesan96)
+[![@zomatoorder1822](https://github-readme-medium-card.vercel.app/getMediumBlogs?username=zomatoorder1822&type=horizontal)](https://medium.com/@zomatoorder1822)
 
 ### How to use
 

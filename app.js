@@ -51,7 +51,7 @@ app.get("/getMediumBlogs", async (request, response) => {
       const card = await Promise.all(
         resultData.map(async (blog, index) => {
           if (index >= limit) {
-            return;
+            return '';
           }
           const blogCardObj = await blogCard(blog);
           return `<g transform="translate(${

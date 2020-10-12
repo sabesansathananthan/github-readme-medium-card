@@ -40,7 +40,7 @@ app.get("/getMediumBlogs", async (request, response) => {
       return;
     }
     const username = request.query.username;
-    let limit = 5;
+    let limit = 3;
     let type = "vertical";
     if (request.query.type) {
       type = request.query.type;
@@ -52,20 +52,20 @@ app.get("/getMediumBlogs", async (request, response) => {
     let result = `<svg>`;
     if (type == "horizontal") {
       result = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${
-        resultData.length * 355
-      }" version="1.2" height="105">`;
+        resultData.length * 600
+      }" version="1.2" height="300">`;
       await asyncForEach(resultData, async (blog, index) => {
         if (index >= limit) {
           return;
         }
         const blogCardObj = await blogCard(blog);
         result += `<g transform="translate(${
-          index * 355
+          index * 600
         }, 0)">${blogCardObj}</g>`;
       });
     } else {
       result = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="350" version="1.2" height="${
-        resultData.length * 110
+        resultData.length * 200
       }">`;
       await asyncForEach(resultData, async (blog, index) => {
         if (index >= limit) {
@@ -73,7 +73,7 @@ app.get("/getMediumBlogs", async (request, response) => {
         }
         const blogCardObj = await blogCard(blog);
         result += `<g transform="translate(0, ${
-          index * 110
+          index * 200
         })">${blogCardObj}</g>`;
       });
     }

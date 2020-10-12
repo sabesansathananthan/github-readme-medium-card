@@ -19,7 +19,7 @@ const blogCard = async (data) => {
   });
   const blogLink = data.link;
   return `
-    <svg height="105px" width="350px">
+    <svg height="1000px" width="3500px">
     <defs>
     <!-- define lines for text lies on -->
     <path id="blogName" d="M0,20 H235 M0,35 H235 M0,50 H240 M0,65 H235">     </path>

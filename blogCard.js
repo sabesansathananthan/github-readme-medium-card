@@ -1,7 +1,7 @@
 const axios = require("axios");
 
-const getBase64 = async (url) => {
-  return await axios
+const getBase64 = (url) => {
+  return axios
     .get(url, {
       responseType: "arraybuffer",
     })

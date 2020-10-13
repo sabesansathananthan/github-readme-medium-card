@@ -32,7 +32,7 @@ const blogCard = async (data, settings) => {
         break;
       case 'dark':
         title_color = "#FFF";
-        text_color = "#000";
+        text_color = "#FFF";
         bg_color = "#000";
         break;
       case 'dracula':

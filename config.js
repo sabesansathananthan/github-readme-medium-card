@@ -7,21 +7,20 @@ global.config = {
         margin : 5,
         image : {
             width : 110,
-            height : 85
         }
     },
     
     themes : {
         current : 'white',
         white : {
-            text : '#000',
+            text_color : '#000',
             background : '#fff',
-            stroke : '#e1e4e8'
+            border_color : '#e1e4e8'
         },
         dark : {
-            text : '#fff',
+            text_color : '#fff',
             background : '#000',
-            stroke : '#e1e4e8'
+            border_color : '#e1e4e8'
         }
     },
 
@@ -29,7 +28,7 @@ global.config = {
         limit : 10
     },
 
-    max_cards_length_in_row : 5
+    max_cards_length_in_row : 4
 }
 
 config.card.offsetWidth = config.card.width + config.card.margin

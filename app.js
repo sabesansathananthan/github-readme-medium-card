@@ -50,30 +50,20 @@ app.get("/getMediumBlogs", async (request, response) => {
 
     resultData.length = limit
 
-    const rows = Math.ceil( resultData.length / config.max_cards_length_in_row )
-    const width = rows * config.card.offsetWidth
-    const height = Math.max( resultData.length, config.max_cards_length_in_row ) * config.card.offsetHeight
-    let result = `
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      xmlns:xlink="http://www.w3.org/1999/xlink"
-      width="${width}"
-      version="1.2"
-      height="${height}"
-    >`;
+    const style = `
+      max-height:${config.card.offsetHeight * config.max_cards_length_in_row}px;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+    `
+    let result = `<div style='${style}'>`;
 
-    let row = 0
     await asyncForEach(resultData, async (blog, index) => {
-      const blogCardObj = await blogCard(blog);
-      const indexInRow = index - (row * config.max_cards_length_in_row)
-      let x = row * config.card.offsetWidth
-      let y = indexInRow * config.card.offsetHeight
-      result += `<g transform="translate(${x + config.card.margin},${y + config.card.margin})">${blogCardObj}</g>`;
-      if ( indexInRow === 4 ) row += 1
+      result += await blogCard(blog);
     });
 
-    result += `</svg>`;
-    response.writeHead(200, { "Content-Type": "image/svg+xml" });
+    result += `</div>`;
+    response.writeHead(200, { "Content-Type": "text/html" });
     response.write(result);
     response.end();
   } catch (error) {

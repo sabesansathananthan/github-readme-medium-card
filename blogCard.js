@@ -19,41 +19,57 @@ const blogCard = async (data) => {
     day: "numeric",
   });
   const blogLink = data.link;
-  return `
-    <svg height="${ config.card.height }px" width="${ config.card.width }px">
-    <defs>
-    <!-- define lines for text lies on -->
-    <path id="blogName" d="M0,20 H235 M0,35 H235 M0,50 H240 M0,65 H235">     </path>
-      <path id="blogAuthor" d="M0,80 H230 ">     
-      </path>
-      <path id="blogDate" d="M0,95 H230 ">     
-      </path>
-      <linearGradient id="backgroundCard" x1="0%" y1="0%" x2="0%" y2="100%">
-        <stop offset="100%" style="stop-color:${ currentTheme.background };stop-opacity:1" />
-      </linearGradient>
-    <linearGradient id="backgroundImage" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:rgb(0,0,0);stop-opacity:1" />
-      <stop offset="100%" style="stop-color:rgb(22,22,22);stop-opacity:1" />
-    </linearGradient>
-   </defs>
-   <a href="${blogLink}" target="_blank">
-   <rect x="0" y="0" width="100%" height="100%" style="fill:url(#backgroundCard);stroke:${currentTheme.stroke};stroke-width:1px;ry:.625rem"></rect>
-   
-   <text transform="translate(${ config.card.image.width + 10 },0)" fill="${ currentTheme.text }" font-size="13" font-family="Arial, Helvetica, sans-serif" font-weight="bold">
-    <textPath xlink:href="#blogName">${data.title}</textPath>
-   </text>
+  const styles = {
+    
+    card : `
+      display: flex;
+      margin: ${config.card.margin}px;
+      width: ${config.card.width}px;
+      height: ${config.card.height}px;
+      border: 1px solid ${currentTheme.border_color};
+      overflow: hidden;
+      border-radius: 5px;
+      text-decoration: none;
+      color: ${currentTheme.text_color};
+      background-color: ${currentTheme.background}
+    `,
 
-   <rect x="5" y="10" height="${ config.card.image.height }px" width="${ config.card.image.width }px" style="fill:url(#backgroundImage);stroke-width:0.5;stroke:rgb(255,255,255)"></rect>
-       <image xlink:href="data:image/png;base64,${blogImage}" x="5" y="10" height="${ config.card.image.height }px" width="${ config.card.image.width }px" />
-   <text transform="translate(${ config.card.image.width + 10 },0)" fill="${ currentTheme.text }" font-size="13">
-    <textPath xlink:href="#blogAuthor">${data.author}</textPath>
-   </text>
-   <text transform="translate(${ config.card.image.width + 10 },0)" fill="${ currentTheme.text }" font-size="12">
-    <textPath xlink:href="#blogDate">${blogDate}</textPath>
-   </text>
-   </a>
-  </svg>
-    `;
+    card__image : `
+      width : ${config.card.image.width};
+      height : 100%;
+    `,
+
+    card__details : `
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    `,
+
+    card__title : `
+      font-weight: bold;
+    `,
+
+    card__author : `
+      font-size: 13px;
+    `,
+
+    card__date : `
+      font-size: 12px;
+    `
+  }
+  return `
+    <a href='${blogLink}' style='${styles.card}'>
+      <img style='${styles.card__image}' src='data:image/png;base64,${blogImage}'/>
+      <div style='${styles.card__details}' >
+        <div style='${styles.card__title}'>${data.title}</div>
+        <div class='card__footer'>
+          <div class='card__author'>${data.author}</div>
+          <div class='card__date'>${blogDate}</div>
+        </div>
+      </div>
+    </a>
+  `;
 };
 
 module.exports = blogCard;

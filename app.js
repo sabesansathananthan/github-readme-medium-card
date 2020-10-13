@@ -61,7 +61,7 @@ app.get("/getMediumBlogs", async (request, response) => {
         return;
       }
       const blogCardObj = await blogCard(blog, settings);
-      result += `<g transform="translate(${
+      result += `<g requiredFeatures="http://www.w3.org/Graphics/SVG/feature/1.2/#TextFlow" transform="translate(${
         ((index%2) ?  width+config.card.spacing : 0)+config.default.margin_left
       }, ${ (Math.floor(index/2)*height)+config.default.margin_top+((index>1)?config.card.spacing*(Math.floor(index/2)):0) })">${blogCardObj}</g>`;
     });

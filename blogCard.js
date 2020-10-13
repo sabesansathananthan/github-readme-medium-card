@@ -20,11 +20,15 @@ const blogCard = async (data, settings) => {
   });
   const blogLink = data.link;
 
+  var selected_theme = config.themes.default;
+
+  if(settings.theme && config.themes[settings.theme]) selected_theme = settings.theme; 
+
   var border_width = config.card.border_width;
   var border_radius = config.card.border_radius+"px";
   var width = settings.width;
   var height = settings.height;
-  var bg_color = settings.bg_color || config.themes[config.themes.default].bg_color;
+  var bg_color = settings.bg_color || config.themes[selected_theme].bg_color;
   
   var image = {
     background: settings.image_background || config.card.image.background,
@@ -35,57 +39,27 @@ const blogCard = async (data, settings) => {
   };
 
   var title = {
-    color: settings.title_color ||  config.themes[config.themes.default].title_color,
-    x: settings.title_x ||  config.card.title.x,
-    y: settings.title_y ||  config.card.title.y
+    color: settings.title_color || config.themes[selected_theme].title_color,
+    x: settings.title_x || config.card.title.x,
+    y: settings.title_y || config.card.title.y
   };
 
   var author = {
-    color: settings.author_color || config.themes[config.themes.default].author_color,
+    color: settings.author_color || config.themes[selected_theme].author_color,
     x: settings.author_x || config.card.author.x,
     y:  settings.author_y || config.card.author.y,
     font_size: settings.author_font_size || config.card.author.font_size
   };
 
   var date = {
-    color: settings.date_color || config.themes[config.themes.default].date_color,
+    color: settings.date_color || config.themes[selected_theme].date_color,
     x: settings.date_x || config.card.date.x,
     y:  settings.date_y || config.card.date.y,
     font_size: settings.date_font_size || config.card.date.font_size
   };
 
-  if(settings.theme) {
-    switch(settings.theme) {
-      case 'light':
-        title.color = config.themes.light.title_color;
-        author.color = config.themes.light.author_color;
-        date.color = config.themes.light.date_color;
-        bg_color = config.themes.light.bg_color;
-        border_color = config.themes.light.border_color;
-        break;
-      case 'dark':
-        title.color = config.themes.dark.title_color;
-        author.color = config.themes.dark.author_color;
-        date.color = config.themes.dark.date_color;
-        bg_color = config.themes.dark.bg_color;
-        border_color = config.themes.dark.border_color;
-        break;
-      case 'dracula':
-        title.color = config.themes.dracula.title_color;
-        author.color = config.themes.dracula.author_color;
-        date.color = config.themes.dracula.date_color;
-        bg_color = config.themes.dracula.bg_color;
-        border_color = config.themes.dracula.border_color;
-        break;
-    }
-
-    if(settings.title_color) title.color = settings.title_color;
-    if(settings.author_color) author.color = settings.author_color;
-    if(settings.author_font_size) author.font_size = settings.author_font_size;
-    if(settings.date_color) date.color = settings.date_color;
-    if(settings.date_font_size) date.font_size = settings.date_font_size;
-    if(settings.bg_color) bg_color = settings.bg_color;
-  } 
+  bg_color = config.themes[selected_theme].bg_color;
+  border_color = config.themes[selected_theme].border_color;
 
   return `
     <svg height="${height}px" width="${width}px">

@@ -7,7 +7,7 @@ Fetch your medium blog posts and display it as cards in your GitHub ReadMe.
 ```
 [![Sabesan96](https://github-readme-medium-card.vercel.app/getMediumBlogs?username=sabesan96&type=horizontal)](https://medium.com/@sabesan96)
 
-![ss](https://github-readme-medium-card-isujleous.vercel.app/getMediumBlogs?username=sabesan96)
+https://github-readme-medium-card-isujleous.vercel.app/getMediumBlogs?username=sabesan96
 
 ### How to use
 

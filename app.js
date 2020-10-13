@@ -1,3 +1,5 @@
+require('./config');
+
 var express = require("express");
 var app = express();
 app.use(express.json());
@@ -21,7 +23,7 @@ const getUserData = async (username) => {
     return error;
   }
 };
-console.log(getUserData("sabesan96"));
+
 const asyncForEach = async (array, settings, callback) => {
   for (let index = 0; index < array.length; index++) {
     await callback(array[index], index, settings, array);
@@ -39,29 +41,29 @@ app.get("/getMediumBlogs", async (request, response) => {
       response.end();
       return;
     }
+
     const username = request.query.username;
-    let limit = 5;
-    let type = "vertical";
-    if (request.query.type) {
-      type = request.query.type;
-    }
-    if (request.query.limit) {
-      limit = request.query.limit;
-    }
+    const width = request.query.width || config.card.width;
+    const height = request.query.height || config.card.height;
+    const limit = request.query.limit || config.default.limit;
+
+    request.query.width = width;
+    request.query.height = height;
+
     const resultData = await getUserData(username);
     let result = `<svg>`;
 
     result = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${
-      (resultData.length <= 1) ? resultData.length*355 : 710 
-    }" version="1.2" height="${ (resultData.length/2)*110 }">`;
+      (2*width)+config.default.margin_left+config.card.spacing
+    }" version="1.2" height="${ (((resultData.length/2)*height)+config.default.margin_top+config.card.spacing*(Math.floor(resultData.length/2))+(resultData.length+config.default.margin_top)) }">`;
     await asyncForEach(resultData, request.query, async (blog, index, settings) => {
       if (index >= limit) {
         return;
       }
       const blogCardObj = await blogCard(blog, settings);
       result += `<g transform="translate(${
-        (index%2) ?  355 : 0  
-      }, ${ Math.floor(index/2)*110 })">${blogCardObj}</g>`;
+        ((index%2) ?  width+config.card.spacing : 0)+config.default.margin_left
+      }, ${ (Math.floor(index/2)*height)+config.default.margin_top+((index>1)?config.card.spacing*(Math.floor(index/2)):0) })">${blogCardObj}</g>`;
     });
   
     result += `</svg>`;

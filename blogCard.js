@@ -41,7 +41,7 @@ const blogCard = async (data, theme = 'dark') => {
   </linearGradient>
    </defs>
    <a href="${blogLink}" target="_blank">
-   <rect x="0" y="0" width="100%" height="100%" style="fill:url(#${theme})"></rect>
+   <rect x="0" y="0" width="100%" height="100%" rx="8" ry="8" style="fill:url(#${theme});stroke-width:2px;stroke:#ccc"></rect>
    <text transform="translate(100,0)" fill="${theme == 'light' ? 'black' : 'white'}" font-size="13" font-family="Arial, Helvetica, sans-serif">
     <textPath xlink:href="#blogName">${data.title}</textPath>
    </text>

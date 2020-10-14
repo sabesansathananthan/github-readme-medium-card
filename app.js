@@ -1,14 +1,16 @@
+require("./config");
+
 var express = require("express");
 var app = express();
 app.use(express.json());
+
 const axios = require("axios");
-const mediumURL =
-  "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@";
+
 const blogCard = require("./blogCard");
 
 const getUserData = async (username) => {
   try {
-    const result = await axios.get(mediumURL + username);
+    const result = await axios.get(config.medium_API_URL + username);
     const filteredResult = result.data.items.filter(
       (item) =>
         (!item.thumbnail.includes("stat?event") ||
@@ -21,7 +23,7 @@ const getUserData = async (username) => {
     return error;
   }
 };
-console.log(getUserData("sabesan96"));
+
 const asyncForEach = async (array, callback) => {
   for (let index = 0; index < array.length; index++) {
     await callback(array[index], index, array);
@@ -29,6 +31,8 @@ const asyncForEach = async (array, callback) => {
 };
 
 app.get("/getMediumBlogs", async (request, response) => {
+  config.themes.current = request.query.theme || config.themes.current
+
   try {
     if (!request.query.username) {
       response.write(
@@ -40,45 +44,26 @@ app.get("/getMediumBlogs", async (request, response) => {
       return;
     }
     const username = request.query.username;
-    let limit = 5;
-    let type = "vertical";
-    if (request.query.type) {
-      type = request.query.type;
-    }
-    if (request.query.limit) {
-      limit = request.query.limit;
-    }
-    const resultData = await getUserData(username);
-    let result = `<svg>`;
-    if (type == "horizontal") {
-      result = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${
-        resultData.length * 355
-      }" version="1.2" height="105">`;
-      await asyncForEach(resultData, async (blog, index) => {
-        if (index >= limit) {
-          return;
-        }
-        const blogCardObj = await blogCard(blog);
-        result += `<g transform="translate(${
-          index * 355
-        }, 0)">${blogCardObj}</g>`;
-      });
-    } else {
-      result = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="350" version="1.2" height="${
-        resultData.length * 110
-      }">`;
-      await asyncForEach(resultData, async (blog, index) => {
-        if (index >= limit) {
-          return;
-        }
-        const blogCardObj = await blogCard(blog);
-        result += `<g transform="translate(0, ${
-          index * 110
-        })">${blogCardObj}</g>`;
-      });
-    }
-    result += `</svg>`;
-    response.writeHead(200, { "Content-Type": "image/svg+xml" });
+    let limit = request.query.limit !== undefined ? request.query.limit : config.defaults.limit;
+
+    let resultData = await getUserData(username);
+
+    resultData.length = limit
+
+    const style = `
+      max-height:${config.card.offsetHeight * config.max_cards_length_in_row}px;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+    `
+    let result = `<div style='${style}'>`;
+
+    await asyncForEach(resultData, async (blog, index) => {
+      result += await blogCard(blog);
+    });
+
+    result += `</div>`;
+    response.writeHead(200, { "Content-Type": "text/html" });
     response.write(result);
     response.end();
   } catch (error) {
@@ -90,5 +75,5 @@ app.get("/getMediumBlogs", async (request, response) => {
 var port = process.env.PORT || 3000;
 
 app.listen(port, function () {
-  console.log("Server listening" + port);
+  console.log(`Server is running on port ${port}`);
 });

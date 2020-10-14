@@ -23,9 +23,9 @@ You can customize the appearance of your `medium cards` for your use case, follo
 
 | Option       | Default Value | Description                                                                             | Required |
 | ------------ | ------------- | --------------------------------------------------------------------------------------- | -------- |
-| `?username=` | `""`          | Your Medium username                                                                    | Yes      |
-| `&limit=`    | `5`           | Maximum number of medium post cards you want to show on your readme, all feeds combined | No       |
-| `&type=`     | `vertical`    | your medium blog post cards alignment could be `horizontal` or `vertical`               | NO       |
+| `?username=` | `""`          | Your Medium username                                                                    | True      |
+| `&limit=`    | `5`           | Maximum number of medium post cards you want to show on your readme, all feeds combined | False       |
+| `&type=`     | `vertical`    | your medium blog post cards alignment could be `horizontal` or `vertical`               | False       |
 
 ### Deploy your own
 

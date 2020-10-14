@@ -6,28 +6,34 @@ global.config = {
     },
     card: {
         width: 370,
-        height: 150,
+        height: 105,
         border_width: 3,
-        border_radius: 6,
+        border_radius: 10,
         spacing: 10,
+        image_mask: {
+            width: 110,
+            height: 101,
+            x: 2,
+            y: 2
+        },
         image: {
-            height: 120,
-            width: 120,
-            x: 5,
-            y: 15
+            width: 115*2,
+            height: 110*2,
+            x: -50,
+            y: -57
         },
         title: {
-            x: 130,
-            y: 10 
+            x: 120,
+            y: 0 
         },
         author: {
-            x: 130,
-            y: 30,
+            x: 120,
+            y: 0,
             font_size: 14
         },
         date: {
-            x: 130,
-            y: 30,
+            x: 120,
+            y: 0,
             font_size: 13
         }
     },

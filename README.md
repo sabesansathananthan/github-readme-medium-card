@@ -1,10 +1,12 @@
 <p align="center">
- <img width="100px" src="https://res.cloudinary.com/anuraghazra/image/upload/v1594908242/logo_ccswme.svg" align="center" alt="GitHub Readme Medium Card" />
+ 
  <h2 align="center">GitHub Readme Medium Card :card_index:</h2>
  <p align="center">Get dynamically generated Meduim post cards on your readmes!</p>
 </p>
 
-Fetch your medium blog posts and display it as cards in your GitHub ReadMe.
+https://www.flatico
+
+
 
 ```
 [![Sabesan96](https://github-readme-medium-card.vercel.app/getMediumBlogs?username=sabesan96&theme=dracula)](https://medium.com/@sabesan96)

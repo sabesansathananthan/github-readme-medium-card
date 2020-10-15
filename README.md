@@ -25,7 +25,7 @@ You can customize the appearance of your `medium cards` for your use case, follo
 | ------------ | ------------- | --------------------------------------------------------------------------------------- | -------- |
 | `?username=` | `""`          | Your Medium username                                                                    | Yes      |
 | `&limit=`    | `5`           | Maximum number of medium post cards you want to show on your readme, all feeds combined | No       |
-| `&type=`     | `vertical`    | your medium blog post cards alignment could be `horizontal` or `vertical`               | NO       |
+| `&theme=`     | `light`    | your medium blog post cards alignment could be `dark` or `light` or `dracula`               | NO       |
 
 ### Deploy your own
 

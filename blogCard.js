@@ -72,28 +72,35 @@ const blogCard = async (data, settings, index) => {
   var character_tracker = 0;
   var array_holder = [];
   var title_string = '';
-  var total_words = data.title.split(' ').length;
+  var word_array = data.title.split(' ');
+  var total_words = word_array.length;
+  var line_tracker = 0;
+  var max_lines = 2;
 
-  data.title.split(" ").forEach((word, index)=>{
-    if(word.length+character_tracker<=max_characters-array_holder.length) {
-      character_tracker+=word.length;
-      array_holder.push(word);
-      if(total_words==index+1) {
-        title_string += `<tspan x="0" dy="1.2em">${array_holder.join(" ")}</tspan>`;
+  try { 
+    word_array.forEach((word, index)=>{
+      if(word.length+character_tracker<=max_characters-array_holder.length) {
+        character_tracker+=word.length;
+        array_holder.push(word);
+        if(total_words==index+1) {
+          title_string += `<tspan x="0" dy="1.2em">${array_holder.join(" ")}</tspan>`;
+        }
       }
-    }
-
-    else {
-      title_string += `<tspan x="0" dy="1.2em">${array_holder.join(" ")}</tspan>`;
-      array_holder = [];
-      character_tracker = 0;
-      character_tracker+=word.length;
-      array_holder.push(word);
-      if(total_words==index+1) {
-        title_string += `<tspan x="0" dy="1.2em">${array_holder.join(" ")}</tspan>`;
+  
+      else {
+        line_tracker++;
+        title_string += `<tspan x="0" dy="1.2em">${array_holder.join(" ")+((line_tracker==max_lines)?'...':'')}</tspan>`;
+        if(line_tracker == max_lines) throw '';
+        array_holder = [];
+        character_tracker = 0;
+        character_tracker+=word.length;
+        array_holder.push(word);
+        if(total_words==index+1) {
+          title_string += `<tspan x="0" dy="1.2em">${array_holder.join(" ")}</tspan>`;
+        }
       }
-    }
-  });
+    });
+  } catch(_){}
 
   return `
     <svg height="${height}px" width="${width}px">
@@ -125,15 +132,7 @@ const blogCard = async (data, settings, index) => {
 
     <a href="${blogLink}" target="_blank">
     
-    <rect id="rect" x="0" y="0" width="100%" height="100%" style="fill:url(#grad1);ry:${border_radius};stroke-width:${border_width};stroke:${border_color}">
-      <switch>
-      <foreignObject x="20" y="90" width="150" height="200">
-      <p xmlns="http://www.w3.org/1999/xhtml">Text goes here</p>
-      </foreignObject>
-      
-      <text x="20" y="20">Your SVG viewer cannot display html.</text>
-      </switch>
-    </rect>
+    <rect id="rect" x="0" y="0" width="100%" height="100%" style="fill:url(#grad1);ry:${border_radius};stroke-width:${border_width};stroke:${border_color}"></rect>
 
     <text transform="translate(${title.x},${title.y})" fill="${title.color}" font-size="13" font-family="Arial, Helvetica, sans-serif" font-weight="bold">
       ${title_string}

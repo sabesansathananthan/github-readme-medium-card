@@ -136,7 +136,7 @@ const blogCard = async (data, settings, index) => {
     </rect>
 
     <text transform="translate(${title.x},${title.y})" fill="${title.color}" font-size="13" font-family="Arial, Helvetica, sans-serif" font-weight="bold">
-      XX ${title_string}
+      ${title_string}
     </text>
     <rect clip-path="url(#clip)" x="${image_mask.x}" y="${image_mask.y}" height="${image_mask.height}px" width="${image_mask.width}px" style="fill:url(#img${index});"></rect>
 

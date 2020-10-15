@@ -68,10 +68,43 @@ const blogCard = async (data, settings, index) => {
   bg_color = config.themes[selected_theme].bg_color;
   border_color = config.themes[selected_theme].border_color;
 
+  var max_characters = 35;
+  var character_tracker = 0;
+  var array_holder = [];
+  var title_string = '';
+  var word_array = data.title.split(' ');
+  var total_words = word_array.length;
+  var line_tracker = 0;
+  var max_lines = 2;
+
+  try { 
+    word_array.forEach((word, index)=>{
+      if(word.length+character_tracker<=max_characters-array_holder.length) {
+        character_tracker+=word.length;
+        array_holder.push(word);
+        if(total_words==index+1) {
+          title_string += `<tspan x="0" dy="1.2em">${array_holder.join(" ")}</tspan>`;
+        }
+      }
+  
+      else {
+        line_tracker++;
+        title_string += `<tspan x="0" dy="1.2em">${array_holder.join(" ")+((line_tracker==max_lines)?'...':'')}</tspan>`;
+        if(line_tracker == max_lines) throw '';
+        array_holder = [];
+        character_tracker = 0;
+        character_tracker+=word.length;
+        array_holder.push(word);
+        if(total_words==index+1) {
+          title_string += `<tspan x="0" dy="1.2em">${array_holder.join(" ")}</tspan>`;
+        }
+      }
+    });
+  } catch(_){}
+
   return `
     <svg height="${height}px" width="${width}px">
     <defs>
-      
       <!-- define lines for text lies on -->
       <path id="blogName" d="M0,20 H235 M0,35 H235 M0,50 H240 M0,65 H235">     </path>
       <path id="blogAuthor" d="M0,80 H230 "></path>
@@ -100,8 +133,9 @@ const blogCard = async (data, settings, index) => {
     <a href="${blogLink}" target="_blank">
     
     <rect id="rect" x="0" y="0" width="100%" height="100%" style="fill:url(#grad1);ry:${border_radius};stroke-width:${border_width};stroke:${border_color}"></rect>
+
     <text transform="translate(${title.x},${title.y})" fill="${title.color}" font-size="13" font-family="Arial, Helvetica, sans-serif" font-weight="bold">
-      <textPath xlink:href="#blogName">${data.title}</textPath>
+      ${title_string}
     </text>
     <rect clip-path="url(#clip)" x="${image_mask.x}" y="${image_mask.y}" height="${image_mask.height}px" width="${image_mask.width}px" style="fill:url(#img${index});"></rect>
 

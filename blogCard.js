@@ -95,8 +95,6 @@ const blogCard = async (data, settings, index) => {
     }
   });
 
-  console.log('TITLE STRING', title_string);
-
   return `
     <svg height="${height}px" width="${width}px">
     <defs>

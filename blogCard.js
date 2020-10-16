@@ -150,7 +150,7 @@ const blogCard = async (data, settings, index) => {
     <text transform="translate(${author.x},${author.y})" fill="${author.color}" font-size="${author.font_size}" font-family="'Segoe UI', Ubuntu, Sans-Serif">
       <textPath xlink:href="#blogAuthor">${data.author}</textPath>
     </text>
-    <text transform="translate(${date.x},${date.y})" fill="${date.color}" font-size="${date.font_size}"font-family="'Segoe UI', Ubuntu, Sans-Serif">
+    <text transform="translate(${date.x},${date.y})" fill="${date.color}" font-size="${date.font_size}" font-family="'Segoe UI', Ubuntu, Sans-Serif">
       <textPath xlink:href="#blogDate">${blogDate}</textPath>
     </text>
     </a>

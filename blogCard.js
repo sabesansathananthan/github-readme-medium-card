@@ -69,7 +69,7 @@ const blogCard = async (data, settings, index) => {
   bg_color = config.themes[selected_theme].bg_color;
   border_color = config.themes[selected_theme].border_color;
 
-  var max_characters = 25;
+  var max_characters = 32;
   var character_tracker = 0;
   var array_holder = [];
   var title_string = "";
@@ -142,7 +142,7 @@ const blogCard = async (data, settings, index) => {
     
     <rect id="rect" x="0" y="0" width="100%" height="100%" style="fill:url(#grad1);ry:${border_radius};stroke-opacity:${border_width};stroke:${border_color}"></rect>
 
-    <text transform="translate(${title.x},${title.y})" fill="${title.color}" font-size="18" font-family="'Segoe UI', Ubuntu, Sans-Serif" font-weight="bold">
+    <text transform="translate(${title.x},${title.y})" fill="${title.color}" font-size="15" font-family="'Segoe UI', Ubuntu, Sans-Serif" font-weight="bold">
       ${title_string}
     </text>
     <rect clip-path="url(#clip)" x="${image_mask.x}" y="${image_mask.y}" height="${image_mask.height}px" width="${image_mask.width}px" style="fill:url(#img${index});"></rect>

@@ -142,15 +142,15 @@ const blogCard = async (data, settings, index) => {
     
     <rect id="rect" x="0" y="0" width="100%" height="100%" style="fill:url(#grad1);ry:${border_radius};stroke-opacity:${border_width};stroke:${border_color}"></rect>
 
-    <text transform="translate(${title.x},${title.y})" fill="${title.color}" font-size="13" font-family="Arial, Helvetica, sans-serif" font-weight="bold">
+    <text transform="translate(${title.x},${title.y})" fill="${title.color}" font-size="13" font-family="'Segoe UI', Ubuntu, Sans-Serif" font-weight="bold">
       ${title_string}
     </text>
     <rect clip-path="url(#clip)" x="${image_mask.x}" y="${image_mask.y}" height="${image_mask.height}px" width="${image_mask.width}px" style="fill:url(#img${index});"></rect>
 
-    <text transform="translate(${author.x},${author.y})" fill="${author.color}" font-size="${author.font_size}">
+    <text transform="translate(${author.x},${author.y})" fill="${author.color}" font-size="${author.font_size}" font-family="'Segoe UI', Ubuntu, Sans-Serif">
       <textPath xlink:href="#blogAuthor">${data.author}</textPath>
     </text>
-    <text transform="translate(${date.x},${date.y})" fill="${date.color}" font-size="${date.font_size}">
+    <text transform="translate(${date.x},${date.y})" fill="${date.color}" font-size="${date.font_size}"font-family="'Segoe UI', Ubuntu, Sans-Serif">
       <textPath xlink:href="#blogDate">${blogDate}</textPath>
     </text>
     </a>

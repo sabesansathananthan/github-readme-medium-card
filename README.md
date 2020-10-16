@@ -71,7 +71,21 @@ Use `?theme=THEME_NAME` parameter like so :-
 
 dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontrast, dracula
 
-![Sabesan96's Medium Post](https://github-readme-medium-card.vercel.app/getMediumBlogs?username=sabesan96&theme=dracula)
+<img src="https://res.cloudinary.com/sabesansathananthan/image/upload/v1602860822/github-readme-medium-card/themes_zafpel.jpg" alt="GitHub Readme Stat Themes" width="600px"/>
+
+You can look at a preview for [all available themes](./themes/README.md) or checkout the [theme config file](./themes/index.js) & **you can also contribute new themes** if you like :D
+
+### Customization
+
+You can customize the appearance of your `medium cards` however you want with URL params.
+
+#### Common Options:
+
+| Option       | Default Value | Description                                                                                   | Required |
+| ------------ | ------------- | --------------------------------------------------------------------------------------------- | -------- |
+| `?username=` | `""`          | Your Medium username                                                                          | Yes      |
+| `&limit=`    | `5`           | Maximum number of medium post cards you want to show on your readme, all feeds combined       | No       |
+| `&theme=`    | `light`       | your medium blog post cards alignment could be any theme mentiond [here](./themes/README.md). | NO       |
 
 ### How to use
 
@@ -93,18 +107,60 @@ You can customize the appearance of your `medium cards` for your use case, follo
 | `&limit=`    | `5`           | Maximum number of medium post cards you want to show on your readme, all feeds combined | No       |
 | `&theme=`    | `light`       | your medium blog post cards alignment could be `dark` or `light` or `dracula`           | NO       |
 
-### Deploy your own
+## Deploy on your own Vercel instance
 
-Deploy this code to your vercel account.[![Vercel Deploy](https://vercel.com/button)](https://vercel.com/import/git?s=https://github.com/sabesansathananthan/github-readme-medium-card)
+Since the GitHub API only allows 5k requests per hour, my `https://github-readme-medium-card.vercel.app/getMediumBlogs` could possibly hit the rate limiter. If you host it on your own Vercel server, then you don't have to worry about anything. Click on the deploy button to get started!
 
-### Contribute
+[![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/sabesansathananthan/github-readme-medium-card)
 
-Contribute to this repository by opening a Pull Request to this repository. Refer to the [CONTRIBUTING](./CONTRIBUTING.md) file for direction.
+<details>
+ <summary><b> Guide on setting up Vercel  🔨 </b></summary>
+
+1. Go to [vercel.com](https://vercel.com/)
+1. Click on `Log in`
+   ![](https://files.catbox.moe/tct1wg.png)
+1. Sign in with GitHub by pressing `Continue with GitHub`
+   ![](https://files.catbox.moe/btd78j.jpeg)
+1. Sign into GitHub and allow access to all repositories, if prompted
+1. Fork this repo
+1. Go back to your [Vercel dashboard](https://vercel.com/dashboard)
+1. Select `Import Project`
+   ![](https://files.catbox.moe/qckos0.png)
+1. Select `Import Git Repository`
+   ![](https://files.catbox.moe/pqub9q.png)
+1. Select root and keep everything as is, just add your environment variable named PAT_1 (as shown), which will contain a personal access token (PAT), which you can easily create [here](https://github.com/settings/tokens/new) (leave everything as is, just name it something, it can be anything you want)
+   ![](https://files.catbox.moe/0ez4g7.png)
+1. Click deploy, and you're good to go. See your domains to use the API!
+
+</details>
+
+## :sparkling_heart: Support the project
+
+I open-source almost everything I can, and I try to reply to everyone needing help using these projects. Obviously, this takes time. You can use this service for free.
+
+However, if you are using this project and happy with it or just want to encourage me to continue creating stuff, there are few ways you can do it :-
+
+- Giving proper credit when you use github-readme-medium-card on your readme, linking back to it :D
+- Starring and sharing the project :rocket:
+- [![paypal.me/sabesan](https://ionicabizau.github.io/badges/paypal.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=A7DQHGNRFKHHE&currency_code=USD) - You can make one-time donations via PayPal. I'll probably buy a ~~coffee~~ tea. :tea:
+
+Thanks! :heart:
+
+---
+
+![https://vercel.com](https://res.cloudinary.com/anuraghazra/image/upload/v1597827714/powered-by-vercel_1_ug4uro.svg)
+
+Contributions are welcome! <3
+
+Made with :heart: and JavaScript.
+
+---
 
 ### License
 
-[MIT License](./LICENSE)
-Copyright (c) 2020 [Sathananthan Sabesan](https://github.com/sabesansathananthan)
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details
+
+---
 
 ### Reference
 

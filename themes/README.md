@@ -45,7 +45,7 @@ Use `&theme=THEME_NAME` parameter like so :-
 [prussian]: https://github-readme-medium-card.vercel.app/getMediumBlogs?username=sabesan96&limit=1&theme=prussian
 [monokai]: https://github-readme-medium-card.vercel.app/getMediumBlogs?username=sabesan96&limit=1&theme=monokai
 [vue]: https://github-readme-medium-card.vercel.app/getMediumBlogs?username=sabesan96&limit=1&theme=vue
-[vue-dark]: hhttps://github-readme-medium-card.vercel.app/getMediumBlogs?username=sabesan96&limit=1&theme=vue-dark
+[vue-dark]: https://github-readme-medium-card.vercel.app/getMediumBlogs?username=sabesan96&limit=1&theme=vue-dark
 [shades-of-purple]: https://github-readme-medium-card.vercel.app/getMediumBlogs?username=sabesan96&limit=1&theme=shades-of-purple
 [nightowl]: https://github-readme-medium-card.vercel.app/getMediumBlogs?username=sabesan96&limit=1&theme=nightowl
 [buefy]: https://github-readme-medium-card.vercel.app/getMediumBlogs?username=sabesan96&limit=1&theme=buefy

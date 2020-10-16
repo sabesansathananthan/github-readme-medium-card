@@ -45,7 +45,7 @@ app.get("/getMediumBlogs", async (request, response) => {
     const username = request.query.username;
     const width = request.query.width || config.card.width;
     const height = request.query.height || config.card.height;
-    const limit = request.query.limit || config.default.limit;
+    const limit = (request.query.limit<=10)?request.query.limit:false || config.default.limit;
 
     request.query.width = width;
     request.query.height = height;

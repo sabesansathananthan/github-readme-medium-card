@@ -47,7 +47,7 @@
 - [Customization](#customization)
 - [Deploy Yourself](#deploy)
 
-# GitHub Medium Post Cards
+<h1 id="github-meadium-card"> GitHub Medium Post Cards </h1>
 
 Copy-paste this into your markdown content, and that's it. Simple!
 
@@ -57,7 +57,7 @@ Change the `?username=` value to your Medium's username.
 ![Sabesan96's Medium Post](https://github-readme-medium-card.vercel.app/getMediumBlogs?username=sabesan96&theme=dracula)
 ```
 
-### Themes
+<h3 id="themes">Themes</h3>
 
 With inbuilt themes, you can customize the look of the card without doing any [manual customization](#customization).
 
@@ -75,7 +75,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 
 You can look at a preview for [all available themes](./themes/README.md) or checkout the [theme config file](./themes/index.js) & **you can also contribute new themes** if you like :D
 
-### Customization
+<h3 id="customization">Customization</h3>
 
 You can customize the appearance of your `medium cards` however you want with URL params.
 
@@ -84,30 +84,10 @@ You can customize the appearance of your `medium cards` however you want with UR
 | Option       | Default Value | Description                                                                                   | Required |
 | ------------ | ------------- | --------------------------------------------------------------------------------------------- | -------- |
 | `?username=` | `""`          | Your Medium username                                                                          | Yes      |
-| `&limit=`    | `5`           | Maximum number of medium post cards you want to show on your readme, all feeds combined       | No       |
+| `&limit=`    | `10`          | Maximum number of medium post cards you want to show on your readme, all feeds combined       | No       |
 | `&theme=`    | `light`       | your medium blog post cards alignment could be any theme mentiond [here](./themes/README.md). | NO       |
 
-### How to use
-
-- Go to your repository
-
-- Add the following section to your **README.md** file. replace `USERNAME` with your real medium username (without @ sign)
-
-```
-[![USERNAME](https://github-readme-medium-card.vercel.app/getMediumBlogs?username=USERNAME)](https://medium.com/@USERNAME)
-```
-
-### Options
-
-You can customize the appearance of your `medium cards` for your use case, following are the list of options available:
-
-| Option       | Default Value | Description                                                                             | Required |
-| ------------ | ------------- | --------------------------------------------------------------------------------------- | -------- |
-| `?username=` | `""`          | Your Medium username                                                                    | Yes      |
-| `&limit=`    | `5`           | Maximum number of medium post cards you want to show on your readme, all feeds combined | No       |
-| `&theme=`    | `light`       | your medium blog post cards alignment could be `dark` or `light` or `dracula`           | NO       |
-
-## Deploy on your own Vercel instance
+<h2 id="deploy">Deploy on your own Vercel instance</h2>
 
 Since the GitHub API only allows 5k requests per hour, my `https://github-readme-medium-card.vercel.app/getMediumBlogs` could possibly hit the rate limiter. If you host it on your own Vercel server, then you don't have to worry about anything. Click on the deploy button to get started!
 

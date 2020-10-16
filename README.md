@@ -40,11 +40,38 @@
 </p>
 <p align="center">Loved the project? Please consider <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=A7DQHGNRFKHHE&currency_code=USD">donating</a> to help it improve!
 
-```
-[![Sabesan96](https://github-readme-medium-card.vercel.app/getMediumBlogs?username=sabesan96&theme=dracula)](https://medium.com/@sabesan96)
+# Features
+
+- [GitHub Medium Post Cards](#github-meadium-card)
+- [Themes](#themes)
+- [Customization](#customization)
+- [Deploy Yourself](#deploy)
+
+# GitHub Medium Post Cards
+
+Copy-paste this into your markdown content, and that's it. Simple!
+
+Change the `?username=` value to your Medium's username.
+
+```md
+![Sabesan96's Medium Post](https://github-readme-medium-card.vercel.app/getMediumBlogs?username=sabesan96&theme=dracula)
 ```
 
-[![Sabesan96](https://github-readme-medium-card.vercel.app/getMediumBlogs?username=sabesan96&theme=dracula)](https://medium.com/@sabesan96)
+### Themes
+
+With inbuilt themes, you can customize the look of the card without doing any [manual customization](#customization).
+
+Use `?theme=THEME_NAME` parameter like so :-
+
+```md
+![Sabesan96's Medium Post](https://github-readme-medium-card.vercel.app/getMediumBlogs?username=sabesan96&theme=dracula)
+```
+
+#### All inbuilt themes :-
+
+dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontrast, dracula
+
+![Sabesan96's Medium Post](https://github-readme-medium-card.vercel.app/getMediumBlogs?username=sabesan96&theme=dracula)
 
 ### How to use
 

@@ -1,12 +1,81 @@
-# Contributor's Guide
+# Contributing to [github-readme-medium-card](https://github.com/sabesansathananthan/github-readme-medium-card)
 
-We welcome the Feedback, bug reports, and pull requests. Feel free to ask for [help](https://github.com/sabesansathananthan/github-readme-medium-card/issues).
+We love your input! We want to make contributing to this project as easy and transparent as possible, whether it's:
 
-Working on your first Pull Request? Refer [First Contribution Guide](https://github.com/firstcontributions/first-contributions)
+- Reporting a issue
+- Discussing the current state of the code
+- Submitting a fix
+- Proposing new features
+- Becoming a maintainer
 
-1. Fork this repo.
-2. Clone the your new repo to your computer.
-3. Create a new branch.
-4. Make your changes.
-5. Commit changes and push. **Note** Commit message format: _type: subject_ (refer the following [link](https://blog.usejournal.com/how-to-contribute-to-open-source-6c1246cd7536#9437))
-6. Open and submit a PR.
+## All Changes Happen Through Pull Requests
+
+Pull requests are the best way to propose changes. We actively welcome your pull requests:
+
+1. Fork the repo and create your branch from `master`.
+1. If you've added code that should be tested, add some tests' example.
+1. If you've changed APIs, update the documentation.config.js
+1. Issue that pull request!
+
+## Local Development
+
+To run & test github-readme-medium-card you need to follow few simple steps :-
+_(make sure you already have a [vercel](https://vercel.com/) account)_
+
+1. Install [Vercel CLI](https://vercel.com/download)
+1. Fork the repository and clone the code to your local machine
+1. Run the command "vercel" in the root and follow the steps there
+1. Run the command "vercel dev" to start a development server at https://localhost:3000
+
+## Themes Contribution
+
+GitHub Readme Medium Card supports custom theming and you can also contribute new themes!
+
+All you need to do is edit [themes/index.js](./themes/index.js) file and add your theme at the end of the file.
+
+While creating the Pull request to add a new theme **don't forget to add a screenshot of how your theme looks**, you can also test how it looks using custom url parameters like `title_color`, `author_color`, `date_color`, `bg_color`,`border_color`
+
+> NOTE: If you are contributing your theme just because you are using it personally, then you can [customize the looks](./readme.md#customization) of your card with URL params instead.
+
+## Any contributions you make will be under the MIT Software License
+
+In short, when you submit changes, your submissions are understood to be under the same [MIT License](http://choosealicense.com/licenses/mit/) that covers the project. Feel free to contact the maintainers if that's a concern.
+
+## Report issues/bugs using GitHub's [issues](https://github.com/sabesansathananthan/github-readme-medium-card/issues)
+
+We use GitHub issues to track public bugs. Report a bug by [opening a new issue](https://github.com/sabesansathananthan/github-readme-medium-card/issues/new/choose); it's that easy!
+
+## Frequently Asked Questions (FAQs)
+
+**Q:** I could not figure out how to deploy on my own vercel instance
+
+> **Ans:**
+>
+> - docs: https://github.com/sabesansathananthan/github-readme-medium-card/#deploy
+
+### Bug Reports
+
+**Great Bug Reports** tend to have:
+
+- A quick summary and/or background
+- Steps to reproduce
+  - Be specific!
+  - Share the snapshot, if possible.
+  - GitHub Readme Medium Card' live link
+- What actually happens
+- What you expected would happen
+- Notes (possibly including why you think this might be happening, or stuff you tried that didn't work)
+
+People _love_ thorough bug reports. I'm not even kidding.
+
+### Feature Request
+
+**Great Feature Requests** tend to have:
+
+- A quick idea summary
+- What & why you wanted to add the specific feature
+- Additional Context like images, links to resources to implement the feature etc etc.
+
+## License
+
+By contributing, you agree that your contributions will be licensed under its [MIT License](./LICENSE).

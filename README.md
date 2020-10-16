@@ -105,3 +105,7 @@ Contribute to this repository by opening a Pull Request to this repository. Refe
 
 [MIT License](./LICENSE)
 Copyright (c) 2020 [Sathananthan Sabesan](https://github.com/sabesansathananthan)
+
+### Reference
+
+Most of the themes' color codes define from [Github Readme Stats](https://github.com/anuraghazra/github-readme-stats)

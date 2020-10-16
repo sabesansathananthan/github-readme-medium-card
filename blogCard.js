@@ -69,7 +69,7 @@ const blogCard = async (data, settings, index) => {
   bg_color = config.themes[selected_theme].bg_color;
   border_color = config.themes[selected_theme].border_color;
 
-  var max_characters = 35;
+  var max_characters = 25;
   var character_tracker = 0;
   var array_holder = [];
   var title_string = "";

@@ -7,8 +7,8 @@ global.config = {
   card: {
     width: 370,
     height: 105,
-    border_width: 3,
-    border_radius: 10,
+    border_width: 1, //stroke-opacity
+    border_radius: 4.5,
     spacing: 10,
     image_mask: {
       width: 110,

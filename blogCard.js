@@ -1,4 +1,4 @@
-require('./config');
+require("./config");
 const axios = require("axios");
 
 const getBase64 = async (url) => {
@@ -22,47 +22,48 @@ const blogCard = async (data, settings, index) => {
 
   var selected_theme = config.themes.default;
 
-  if(settings.theme && config.themes[settings.theme]) selected_theme = settings.theme; 
+  if (settings.theme && config.themes[settings.theme])
+    selected_theme = settings.theme;
 
   var border_width = config.card.border_width;
-  var border_radius = config.card.border_radius+"px";
+  var border_radius = config.card.border_radius + "px";
   var width = settings.width;
   var height = settings.height;
   var bg_color = settings.bg_color || config.themes[selected_theme].bg_color;
-  
+
   var image_mask = {
     background: settings.image_background || config.card.image_mask.background,
     height: settings.image_height || config.card.image_mask.height,
     width: settings.image_width || config.card.image_mask.width,
     x: settings.image_x || config.card.image_mask.x,
-    y: settings.image_y || config.card.image_mask.y
+    y: settings.image_y || config.card.image_mask.y,
   };
 
   var image = {
     height: settings.image_height || config.card.image.height,
     width: settings.image_width || config.card.image.width,
     x: settings.image_x || config.card.image.x,
-    y: settings.image_y || config.card.image.y
+    y: settings.image_y || config.card.image.y,
   };
 
   var title = {
     color: settings.title_color || config.themes[selected_theme].title_color,
     x: settings.title_x || config.card.title.x,
-    y: settings.title_y || config.card.title.y
+    y: settings.title_y || config.card.title.y,
   };
 
   var author = {
     color: settings.author_color || config.themes[selected_theme].author_color,
     x: settings.author_x || config.card.author.x,
-    y:  settings.author_y || config.card.author.y,
-    font_size: settings.author_font_size || config.card.author.font_size
+    y: settings.author_y || config.card.author.y,
+    font_size: settings.author_font_size || config.card.author.font_size,
   };
 
   var date = {
     color: settings.date_color || config.themes[selected_theme].date_color,
     x: settings.date_x || config.card.date.x,
-    y:  settings.date_y || config.card.date.y,
-    font_size: settings.date_font_size || config.card.date.font_size
+    y: settings.date_y || config.card.date.y,
+    font_size: settings.date_font_size || config.card.date.font_size,
   };
 
   bg_color = config.themes[selected_theme].bg_color;
@@ -71,36 +72,43 @@ const blogCard = async (data, settings, index) => {
   var max_characters = 35;
   var character_tracker = 0;
   var array_holder = [];
-  var title_string = '';
-  var word_array = data.title.split(' ');
+  var title_string = "";
+  var word_array = data.title.split(" ");
   var total_words = word_array.length;
   var line_tracker = 0;
   var max_lines = 2;
 
-  try { 
-    word_array.forEach((word, index)=>{
-      if(word.length+character_tracker<=max_characters-array_holder.length) {
-        character_tracker+=word.length;
+  try {
+    word_array.forEach((word, index) => {
+      if (
+        word.length + character_tracker <=
+        max_characters - array_holder.length
+      ) {
+        character_tracker += word.length;
         array_holder.push(word);
-        if(total_words==index+1) {
-          title_string += `<tspan x="0" dy="1.2em">${array_holder.join(" ")}</tspan>`;
+        if (total_words == index + 1) {
+          title_string += `<tspan x="0" dy="1.2em">${array_holder.join(
+            " "
+          )}</tspan>`;
         }
-      }
-  
-      else {
+      } else {
         line_tracker++;
-        title_string += `<tspan x="0" dy="1.2em">${array_holder.join(" ")+((line_tracker==max_lines)?'...':'')}</tspan>`;
-        if(line_tracker == max_lines) throw '';
+        title_string += `<tspan x="0" dy="1.2em">${
+          array_holder.join(" ") + (line_tracker == max_lines ? "..." : "")
+        }</tspan>`;
+        if (line_tracker == max_lines) throw "";
         array_holder = [];
         character_tracker = 0;
-        character_tracker+=word.length;
+        character_tracker += word.length;
         array_holder.push(word);
-        if(total_words==index+1) {
-          title_string += `<tspan x="0" dy="1.2em">${array_holder.join(" ")}</tspan>`;
+        if (total_words == index + 1) {
+          title_string += `<tspan x="0" dy="1.2em">${array_holder.join(
+            " "
+          )}</tspan>`;
         }
       }
     });
-  } catch(_){}
+  } catch (_) {}
 
   return `
     <svg height="${height}px" width="${width}px">
@@ -132,7 +140,7 @@ const blogCard = async (data, settings, index) => {
 
     <a href="${blogLink}" target="_blank">
     
-    <rect id="rect" x="0" y="0" width="100%" height="100%" style="fill:url(#grad1);ry:${border_radius};stroke-width:${border_width};stroke:${border_color}"></rect>
+    <rect id="rect" x="0" y="0" width="100%" height="100%" style="fill:url(#grad1);ry:${border_radius};stroke-opacity:${border_width};stroke:${border_color}"></rect>
 
     <text transform="translate(${title.x},${title.y})" fill="${title.color}" font-size="13" font-family="Arial, Helvetica, sans-serif" font-weight="bold">
       ${title_string}

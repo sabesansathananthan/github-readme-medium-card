@@ -142,7 +142,7 @@ const blogCard = async (data, settings, index) => {
     
     <rect id="rect" x="0" y="0" width="100%" height="100%" style="fill:url(#grad1);ry:${border_radius};stroke-opacity:${border_width};stroke:${border_color}"></rect>
 
-    <text transform="translate(${title.x},${title.y})" fill="${title.color}" font-size="13" font-family="'Segoe UI', Ubuntu, Sans-Serif" font-weight="bold">
+    <text transform="translate(${title.x},${title.y})" fill="${title.color}" font-size="18" font-family="'Segoe UI', Ubuntu, Sans-Serif" font-weight="bold">
       ${title_string}
     </text>
     <rect clip-path="url(#clip)" x="${image_mask.x}" y="${image_mask.y}" height="${image_mask.height}px" width="${image_mask.width}px" style="fill:url(#img${index});"></rect>

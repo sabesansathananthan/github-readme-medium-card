@@ -3,6 +3,10 @@ global.config = {
     limit: 10,
     margin_left: 10,
     margin_top: 10,
+    cache_seconds: {
+      min: 7200,
+      max: 86400
+    }
   },
   card: {
     width: 370,

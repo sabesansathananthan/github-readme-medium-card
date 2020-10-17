@@ -13,6 +13,7 @@ const getBase64 = async (url) => {
 };
 
 const blogCard = async (data, settings, index) => {
+
     var result = await axios.get(data.thumbnail, {responseType: 'arraybuffer'})
         .then(({data}) => {
             return sharp(data).resize(198, 110).png().toBuffer();
@@ -22,6 +23,7 @@ const blogCard = async (data, settings, index) => {
         year: "numeric",
         month: "short",
         day: "numeric",
+
     });
     const blogLink = data.link;
 

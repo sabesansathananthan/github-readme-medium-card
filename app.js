@@ -87,6 +87,27 @@ app.get("/getMediumBlogs", async (request, response) => {
   }
 });
 
+app.get("/getMediumBlogs", async (request, response) => {
+  try {
+    if (!request.query.username) {
+      response.write(
+        JSON.stringify({
+          error: "your medium username is require in the query string",
+        })
+      );
+      response.end();
+      return;
+    }
+
+    const username = request.query.username;
+    
+    const url = request.query.to || 0;
+    var resultData = await getUserData(username);
+    const resultLink = resultData[url].link;
+    response.redirect(resultLink);
+  }
+});
+
 var port = process.env.PORT || 3000;
 
 app.listen(port, function () {

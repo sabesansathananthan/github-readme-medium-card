@@ -87,7 +87,7 @@ app.get("/getMediumBlogs", async (request, response) => {
   }
 });
 
-app.get("/getMediumBlogs", async (request, response) => {
+app.get("/redirect", async (request, response) => {
   try {
     if (!request.query.username) {
       response.write(

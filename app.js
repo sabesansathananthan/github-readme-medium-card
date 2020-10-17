@@ -46,6 +46,7 @@ app.get("/getMediumBlogs", async (request, response) => {
     const width = request.query.width || config.card.width;
     const height = request.query.height || config.card.height;
     const limit = (request.query.limit<=10)?request.query.limit:false || config.default.limit;
+    const submittedCache = request.query.cache_seconds || config.default.cache_seconds.min;
 
     request.query.width = width;
     request.query.height = height;
@@ -69,7 +70,14 @@ app.get("/getMediumBlogs", async (request, response) => {
     });
   
     result += `</svg>`;
-    response.writeHead(200, { "Content-Type": "image/svg+xml" });
+
+    var cacheInSeconds = Math.max(config.default.cache_seconds.min, Math.min(submittedCache, config.default.cache_seconds.max));
+
+    response.writeHead(200, 
+      { "Content-Type": "image/svg+xml" },
+      { "Cache-Control": `public, max-age=${cacheInSeconds}` }
+    );
+
     response.write(result);
     response.end();
   } catch (error) {

@@ -62,7 +62,7 @@ app.get("/getMediumBlogs", async (request, response) => {
               version="1.2" 
               height="${ (((Math.round(limit/2))*height)+config.default.margin_top*2+config.card.spacing*(Math.floor(limit/2))) }"
               viewBox="0 0 ${((limit==1)?width:2*width)+config.default.margin_left+config.card.spacing} ${ (((Math.round(limit/2))*height)+config.default.margin_top*2+config.card.spacing*(Math.floor(limit/2))) }">`;
-    resultData = resultData.slice(offset,limit);
+    resultData = resultData.slice(offset,offset+limit);
     await asyncForEach(resultData, request.query, async (blog, index, settings) => {
       const blogCardObj = await blogCard(blog, settings, index);
       result += `<g requiredFeatures="http://www.w3.org/Graphics/SVG/feature/1.2/#TextFlow" transform="translate(${

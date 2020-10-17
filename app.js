@@ -53,9 +53,11 @@ app.get("/getMediumBlogs", async (request, response) => {
     const resultData = await getUserData(username);
     let result = `<svg>`;
 
+    if(resultData.length < limit) limit = resultData.length
+
     result = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${
-      (2*width)+config.default.margin_left+config.card.spacing
-    }" version="1.2" height="${ (((Math.round(limit/2))*height)+config.default.margin_top+config.card.spacing*(Math.floor(resultData.length/2))+(resultData.length+config.default.margin_top)) }">`;
+      ((limit==1)?width:2*width)+config.default.margin_left+config.card.spacing
+    }" version="1.2" height="${ (((Math.round(limit/2))*height)+config.default.margin_top*2+config.card.spacing*(Math.floor(limit/2))) }">`;
     await asyncForEach(resultData, request.query, async (blog, index, settings) => {
       if (index >= limit) {
         return;

@@ -3,115 +3,120 @@ const axios = require("axios");
 const sharp = require('sharp');
 
 const getBase64 = async (url) => {
-  return await axios
-    .get(url, {
-      responseType: "arraybuffer",
-    })
-    .then((response) =>
-      Buffer.from(response.data, "binary").toString("base64")
-    );
+    return await axios
+        .get(url, {
+            responseType: "arraybuffer",
+        })
+        .then((response) =>
+            Buffer.from(response.data, "binary").toString("base64")
+        );
 };
 
 const blogCard = async (data, settings, index) => {
-  const blogImage = "data:image/png;base64,"+sharp(data.thumbnail).resize(120,120,{fit:'cover'}).toBuffer().toString("base64");
-  const blogDate = new Date(data.pubDate).toLocaleString("default", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
-  const blogLink = data.link;
-
-  var selected_theme = config.themes.default;
-
-  if (settings.theme && config.themes[settings.theme])
-    selected_theme = settings.theme;
-
-  var border_width = config.card.border_width;
-  var border_radius = config.card.border_radius + "px";
-  var width = settings.width;
-  var height = settings.height;
-  var bg_color = settings.bg_color || config.themes[selected_theme].bg_color;
-
-  var image_mask = {
-    background: settings.image_background || config.card.image_mask.background,
-    height: settings.image_height || config.card.image_mask.height,
-    width: settings.image_width || config.card.image_mask.width,
-    x: settings.image_x || config.card.image_mask.x,
-    y: settings.image_y || config.card.image_mask.y,
-  };
-
-  var image = {
-    height: settings.image_height || config.card.image.height,
-    width: settings.image_width || config.card.image.width,
-    x: settings.image_x || config.card.image.x,
-    y: settings.image_y || config.card.image.y,
-  };
-
-  var title = {
-    color: settings.title_color || config.themes[selected_theme].title_color,
-    x: settings.title_x || config.card.title.x,
-    y: settings.title_y || config.card.title.y,
-  };
-
-  var author = {
-    color: settings.author_color || config.themes[selected_theme].author_color,
-    x: settings.author_x || config.card.author.x,
-    y: settings.author_y || config.card.author.y,
-    font_size: settings.author_font_size || config.card.author.font_size,
-  };
-
-  var date = {
-    color: settings.date_color || config.themes[selected_theme].date_color,
-    x: settings.date_x || config.card.date.x,
-    y: settings.date_y || config.card.date.y,
-    font_size: settings.date_font_size || config.card.date.font_size,
-  };
-
-  bg_color = config.themes[selected_theme].bg_color;
-  border_color = config.themes[selected_theme].border_color;
-
-  var max_characters = 30;
-  var character_tracker = 0;
-  var array_holder = [];
-  var title_string = "";
-  var word_array = data.title.split(" ");
-  var total_words = word_array.length;
-  var line_tracker = 0;
-  var max_lines = 2;
-
-  try {
-    word_array.forEach((word, index) => {
-      if (
-        word.length + character_tracker <=
-        max_characters - array_holder.length
-      ) {
-        character_tracker += word.length;
-        array_holder.push(word);
-        if (total_words == index + 1) {
-          title_string += `<tspan x="0" dy="1.2em">${array_holder.join(
-            " "
-          )}</tspan>`;
-        }
-      } else {
-        line_tracker++;
-        title_string += `<tspan x="0" dy="1.2em">${
-          array_holder.join(" ") + (line_tracker == max_lines ? "..." : "")
-        }</tspan>`;
-        if (line_tracker == max_lines) throw "";
-        array_holder = [];
-        character_tracker = 0;
-        character_tracker += word.length;
-        array_holder.push(word);
-        if (total_words == index + 1) {
-          title_string += `<tspan x="0" dy="1.2em">${array_holder.join(
-            " "
-          )}</tspan>`;
-        }
-      }
+    var result = await axios.get(data.thumbnail, {responseType: 'arraybuffer'})
+        .then(({data}) => {
+            return sharp(data).resize(198, 110).png().toBuffer();
+        });
+    const blogImage ="data:image/png;base64,"+ result.toString('base64');
+    const blogDate = new Date(data.pubDate).toLocaleString("default", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
     });
-  } catch (_) {}
+    const blogLink = data.link;
 
-  return `
+    var selected_theme = config.themes.default;
+
+    if (settings.theme && config.themes[settings.theme])
+        selected_theme = settings.theme;
+
+    var border_width = config.card.border_width;
+    var border_radius = config.card.border_radius + "px";
+    var width = settings.width;
+    var height = settings.height;
+    var bg_color = settings.bg_color || config.themes[selected_theme].bg_color;
+
+    var image_mask = {
+        background: settings.image_background || config.card.image_mask.background,
+        height: settings.image_height || config.card.image_mask.height,
+        width: settings.image_width || config.card.image_mask.width,
+        x: settings.image_x || config.card.image_mask.x,
+        y: settings.image_y || config.card.image_mask.y,
+    };
+
+    var image = {
+        height: settings.image_height || config.card.image.height,
+        width: settings.image_width || config.card.image.width,
+        x: settings.image_x || config.card.image.x,
+        y: settings.image_y || config.card.image.y,
+    };
+
+    var title = {
+        color: settings.title_color || config.themes[selected_theme].title_color,
+        x: settings.title_x || config.card.title.x,
+        y: settings.title_y || config.card.title.y,
+    };
+
+    var author = {
+        color: settings.author_color || config.themes[selected_theme].author_color,
+        x: settings.author_x || config.card.author.x,
+        y: settings.author_y || config.card.author.y,
+        font_size: settings.author_font_size || config.card.author.font_size,
+    };
+
+    var date = {
+        color: settings.date_color || config.themes[selected_theme].date_color,
+        x: settings.date_x || config.card.date.x,
+        y: settings.date_y || config.card.date.y,
+        font_size: settings.date_font_size || config.card.date.font_size,
+    };
+
+    bg_color = config.themes[selected_theme].bg_color;
+    border_color = config.themes[selected_theme].border_color;
+
+    var max_characters = 30;
+    var character_tracker = 0;
+    var array_holder = [];
+    var title_string = "";
+    var word_array = data.title.split(" ");
+    var total_words = word_array.length;
+    var line_tracker = 0;
+    var max_lines = 2;
+
+    try {
+        word_array.forEach((word, index) => {
+            if (
+                word.length + character_tracker <=
+                max_characters - array_holder.length
+            ) {
+                character_tracker += word.length;
+                array_holder.push(word);
+                if (total_words == index + 1) {
+                    title_string += `<tspan x="0" dy="1.2em">${array_holder.join(
+                        " "
+                    )}</tspan>`;
+                }
+            } else {
+                line_tracker++;
+                title_string += `<tspan x="0" dy="1.2em">${
+                    array_holder.join(" ") + (line_tracker == max_lines ? "..." : "")
+                }</tspan>`;
+                if (line_tracker == max_lines) throw "";
+                array_holder = [];
+                character_tracker = 0;
+                character_tracker += word.length;
+                array_holder.push(word);
+                if (total_words == index + 1) {
+                    title_string += `<tspan x="0" dy="1.2em">${array_holder.join(
+                        " "
+                    )}</tspan>`;
+                }
+            }
+        });
+    } catch (_) {
+    }
+
+    return `
     <svg height="${height}px" width="${width}px">
     <defs>
       <!-- define lines for text lies on -->
@@ -127,7 +132,7 @@ const blogCard = async (data, settings, index) => {
         <stop offset="0%" style="stop-color:${image_mask.background};stop-opacity:1" />
         <stop offset="100%" style="stop-color:${image_mask.background};stop-opacity:1" />
       </linearGradient>
-    
+
       <clipPath id="clip">
         <use xlink:href="#rect"/>
       </clipPath>
@@ -140,7 +145,7 @@ const blogCard = async (data, settings, index) => {
     <use xlink:href="#rect" stroke-width="2" stroke="black"/>
 
     <a href="${blogLink}" target="_blank">
-    
+
     <rect id="rect" x="0" y="0" width="100%" height="100%" style="fill:url(#grad1);ry:${border_radius};stroke-opacity:${border_width};stroke:${border_color}"></rect>
 
     <text transform="translate(${title.x},${title.y})" fill="${title.color}" font-size="15" font-family="'Segoe UI', Ubuntu, Sans-Serif" font-weight="bold">

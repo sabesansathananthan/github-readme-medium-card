@@ -43,6 +43,7 @@ app.get("/getMediumBlogs", async (request, response) => {
     }
 
     const username = request.query.username;
+    const offset = request.query.offset || 0;
     const width = request.query.width || config.card.width;
     const height = request.query.height || config.card.height;
     const limit = (request.query.limit<=10)?request.query.limit:false || config.default.limit;
@@ -51,7 +52,7 @@ app.get("/getMediumBlogs", async (request, response) => {
     request.query.width = width;
     request.query.height = height;
 
-    const resultData = await getUserData(username);
+    var resultData = await getUserData(username);
     let result = `<svg>`;
 
     if(resultData.length < limit) limit = resultData.length
@@ -61,10 +62,8 @@ app.get("/getMediumBlogs", async (request, response) => {
               version="1.2" 
               height="${ (((Math.round(limit/2))*height)+config.default.margin_top*2+config.card.spacing*(Math.floor(limit/2))) }"
               viewBox="0 0 ${((limit==1)?width:2*width)+config.default.margin_left+config.card.spacing} ${ (((Math.round(limit/2))*height)+config.default.margin_top*2+config.card.spacing*(Math.floor(limit/2))) }">`;
+    resultData = resultData.slice(offset,offset+limit);
     await asyncForEach(resultData, request.query, async (blog, index, settings) => {
-      if (index >= limit) {
-        return;
-      }
       const blogCardObj = await blogCard(blog, settings, index);
       result += `<g requiredFeatures="http://www.w3.org/Graphics/SVG/feature/1.2/#TextFlow" transform="translate(${
         ((index%2) ?  width+config.card.spacing : 0)+config.default.margin_left

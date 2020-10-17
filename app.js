@@ -69,12 +69,12 @@ app.get("/getMediumBlogs", async (request, response) => {
         ((index%2) ?  width+config.card.spacing : 0)+config.default.margin_left
       }, ${ (Math.floor(index/2)*height)+config.default.margin_top+((index>1)?config.card.spacing*(Math.floor(index/2)):0) })">${blogCardObj}</g>`;
     });
-  
+
     result += `</svg>`;
 
     var cacheInSeconds = Math.max(config.default.cache_seconds.min, Math.min(submittedCache, config.default.cache_seconds.max));
 
-    response.writeHead(200, 
+    response.writeHead(200,
       { "Content-Type": "image/svg+xml" },
       { "Cache-Control": `public, max-age=${cacheInSeconds}` }
     );
@@ -82,6 +82,30 @@ app.get("/getMediumBlogs", async (request, response) => {
     response.write(result);
     response.end();
   } catch (error) {
+    console.log(error);
+    response.send("Error while fetching the data" + error);
+  }
+});
+
+app.get("/redirect", async (request, response) => {
+  try {
+    if (!request.query.username) {
+      response.write(
+        JSON.stringify({
+          error: "your medium username is require in the query string",
+        })
+      );
+      response.end();
+      return;
+    }
+
+    const username = request.query.username;
+
+    const url = request.query.to || 0;
+    var resultData = await getUserData(username);
+    const resultLink = resultData[url].link;
+    response.redirect(resultLink);
+  }  catch (error) {
     console.log(error);
     response.send("Error while fetching the data" + error);
   }

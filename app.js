@@ -63,7 +63,7 @@ app.get("/getMediumBlogs", async (request, response) => {
               height="${ (((Math.round(limit/2))*height)+config.default.margin_top*2+config.card.spacing*(Math.floor(limit/2))) }"
               viewBox="0 0 ${((limit==1)?width:2*width)+config.default.margin_left+config.card.spacing} ${ (((Math.round(limit/2))*height)+config.default.margin_top*2+config.card.spacing*(Math.floor(limit/2))) }">`;
     await asyncForEach(resultData, request.query, async (blog, index, settings) => {
-      if (index >= limit && index <= offset) {
+      if (index >= limit || index <= offset) {
         return;
       }
       const blogCardObj = await blogCard(blog, settings, index);

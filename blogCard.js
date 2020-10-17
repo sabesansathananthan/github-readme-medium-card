@@ -1,5 +1,6 @@
 require("./config");
 const axios = require("axios");
+const sharp = require('sharp');
 
 const getBase64 = async (url) => {
   return await axios
@@ -12,7 +13,7 @@ const getBase64 = async (url) => {
 };
 
 const blogCard = async (data, settings, index) => {
-  const blogImage = data.thumbnail;
+  const blogImage = "data:image/png;base64,"+sharp(data.thumbnail).resize(120,120,{fit:'cover'}).toBuffer().toString("base64");
   const blogDate = new Date(data.pubDate).toLocaleString("default", {
     year: "numeric",
     month: "short",

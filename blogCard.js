@@ -12,7 +12,7 @@ const getBase64 = async (url) => {
 };
 
 const blogCard = async (data, settings, index) => {
-  const blogImage = await getBase64(data.thumbnail);
+  const blogImage = data.thumbnail;
   const blogDate = new Date(data.pubDate).toLocaleString("default", {
     year: "numeric",
     month: "short",
@@ -132,7 +132,7 @@ const blogCard = async (data, settings, index) => {
       </clipPath>
 
       <pattern id="img${index}" patternUnits="userSpaceOnUse" x="0" y="0" width="100%" height="100%">
-        <image xlink:href="data:image/png;base64,${blogImage}" x="${image.x}" y="${image.y}" height="${image.height}px" width="${image.width}px" />
+        <image xlink:href="${blogImage}" x="${image.x}" y="${image.y}" height="${image.height}px" width="${image.width}px" />
       </pattern>
     </defs>
 

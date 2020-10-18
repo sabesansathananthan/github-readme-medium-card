@@ -98,7 +98,7 @@ const blogCard = async (data, settings, index) => {
   } catch (_) {}
 
   return `
-    <svg height="${height}px" width="${width}px">
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="${height}px" width="${width}px" version="1.2">
     <defs>
       <!-- define lines for text lies on -->
       <path id="blogName" d="M0,20 H235 M0,35 H235 M0,50 H240 M0,65 H235">     </path>

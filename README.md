@@ -124,6 +124,8 @@ However, if you are using this project and happy with it or just want to encoura
 - Starring and sharing the project :rocket:
 - [![paypal.me/sabesan](https://ionicabizau.github.io/badges/paypal.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=A7DQHGNRFKHHE&currency_code=USD) - You can make one-time donations via PayPal. I'll probably buy a ~~coffee~~ tea. :tea:
 
+
+![BuyMeACoffee](https://cdn.buymeacoffee.com/buttons/v2/default-red.png =40x)
 <a href="https://www.buymeacoffee.com/sabesan" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-red.png" alt="Buy Me A Tea" style="height: 10px !important;width: 40px !important;" ></a>
 
 Thanks! :heart:

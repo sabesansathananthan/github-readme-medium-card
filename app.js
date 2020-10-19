@@ -85,11 +85,13 @@ app.get("/getMediumBlogs", async (request, response) => {
       Math.min(submittedCache, config.default.cache_seconds.max)
     );
 
-    response.writeHead(
-      200,
-      { "Content-Type": "image/svg+xml" },
-      { "Cache-Control": `public, max-age=${cacheInSeconds}` }
+    response.setHeader(
+      "Cache-Control",
+      "private, no-cache, no-store, must-revalidate"
     );
+    res.setHeader("Expires", "-1");
+    res.setHeader("Pragma", "no-cache");
+    response.writeHead(200, { "Content-Type": "image/svg+xml" });
 
     response.write(result);
     response.end();

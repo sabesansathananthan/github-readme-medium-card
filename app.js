@@ -87,7 +87,7 @@ app.get("/getMediumBlogs", async (request, response) => {
 
     response.setHeader(
       "Cache-Control",
-      "private, no-cache, no-store, must-revalidate"
+      "public, no-cache, no-store, must-revalidate"
     );
     res.setHeader("Expires", "-1");
     res.setHeader("Pragma", "no-cache");

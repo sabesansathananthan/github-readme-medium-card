@@ -89,8 +89,8 @@ app.get("/getMediumBlogs", async (request, response) => {
       "Cache-Control",
       "public, no-cache, no-store, must-revalidate"
     );
-    res.setHeader("Expires", "-1");
-    res.setHeader("Pragma", "no-cache");
+    response.setHeader("Expires", "-1");
+    response.setHeader("Pragma", "no-cache");
     response.writeHead(200, { "Content-Type": "image/svg+xml" });
 
     response.write(result);
